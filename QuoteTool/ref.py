@@ -1,7 +1,8 @@
 # Set constant values
-import os
-from dotenv import load_dotenv
-load_dotenv()
+# import os
+# from dotenv import load_dotenv
+# load_dotenv()
+import streamlit as st
 
 url = 'https://excel.uat.us.coherent.global/presales/api/v3/folders/DemoStanz/services/DisabilityIncome/Execute'
 
@@ -17,7 +18,7 @@ request_meta = {
 
 headers = {
     'content-type': content_type,
-    'x-synthetic-key': os.getenv('API_KEY'),
+    'x-synthetic-key': st.secrets['API_KEY'], # os.getenv('API_KEY'),
     'x-tenant-name': tenant
 }
 
