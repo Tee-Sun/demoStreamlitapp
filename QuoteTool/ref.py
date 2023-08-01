@@ -18,7 +18,7 @@ request_meta = {
 
 headers = {
     'content-type': content_type,
-    'x-synthetic-key': st.secrets['API_KEY'], # os.getenv('API_KEY'),
+    'x-synthetic-key': st.secrets["API_KEY"], # os.getenv('API_KEY'),
     'x-tenant-name': tenant
 }
 
