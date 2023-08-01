@@ -25,21 +25,18 @@ except ValueError:
 @st.cache(suppress_st_warning=True)
 def get_data(x, rm, url, headers): #(x, rm, url, headers, threads)
     req = to_json(x, rm)
-    st.write(req)
+    # st.write(req)
     #store = threaded_process_range(req, url, headers, threads, range(threads))
     store = asyncio.run(async_batch_call(url, headers, req))
-    st.write(store)
+    # st.write(store)
     z = write_results(store)
     return z
 
-try:
-    res = get_data(inputs, request_meta, url, headers)
-    res_df = pd.json_normalize(res)
-    premium = res_df['Premium'].sum()
-    st.subheader('Annual Premium: :blue[${:0,.0f}]'.format(premium).replace('$-','-$'))
+res = get_data(inputs, request_meta, url, headers)
+res_df = pd.json_normalize(res)
+premium = res_df['Premium'].sum()
+st.subheader('Annual Premium: :blue[${:0,.0f}]'.format(premium).replace('$-','-$'))
 
-except:
-    pass
 
 
 
