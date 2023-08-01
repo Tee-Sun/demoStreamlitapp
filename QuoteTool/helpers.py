@@ -11,7 +11,7 @@ from ref import *
 def to_request(inputs, request_meta):
     # Turn dataframe into JSON data structure
     data_js = inputs.to_json(orient='records')
-    data_ls = eval(data_js)
+    data_ls = json.loads(data_js)
     #Create array of JSON requests
     req = []
     for i in range(len(inputs)):

@@ -17,8 +17,8 @@ file = st.file_uploader("Drop your census file here to load", type={"csv"})
 try:
     inputs = pd.read_csv(file)
     st.text("Upload success!")
-    req = to_request(inputs, request_meta)
-    st.text(req)
+    data_js = inputs.to_json(orient='records')
+    st.text(data_js)
 
 except ValueError:
     st.text("Waiting for file...")
