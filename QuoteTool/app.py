@@ -17,8 +17,7 @@ file = st.file_uploader("Drop your census file here to load", type={"csv"})
 try:
     inputs = pd.read_csv(file)
     st.text("Upload success!")
-    data_js = inputs.to_json(orient='records')
-    st.text(data_js)
+    req = to_request(inputs, request_meta)
 
 except ValueError:
     st.text("Waiting for file...")
@@ -31,11 +30,14 @@ def get_data(req, url, headers): #(x, rm, url, headers, threads)
     z = write_results(store)
     return z
 
-res = get_data(req, url, headers)
-res_df = pd.json_normalize(res)
-premium = res_df['Premium'].sum()
-st.subheader('Annual Premium: :blue[${:0,.0f}]'.format(premium).replace('$-','-$'))
+try:
+    res = get_data(req, url, headers)
+    res_df = pd.json_normalize(res)
+    premium = res_df['Premium'].sum()
+    st.subheader('Annual Premium: :blue[${:0,.0f}]'.format(premium).replace('$-','-$'))
 
+except:
+    pass
 
 
 
