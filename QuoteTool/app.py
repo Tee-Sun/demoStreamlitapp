@@ -33,6 +33,11 @@ def get_data(x, rm, url, headers): #(x, rm, url, headers, threads)
 
 try:
     res = get_data(inputs, request_meta, url, headers)
+
+except:
+    st.text("Waiting on get_data...")
+
+try:
     res_df = pd.json_normalize(res)
     premium = res_df['Premium'].sum()
     st.subheader('Annual Premium: :blue[${:0,.0f}]'.format(premium).replace('$-','-$'))
