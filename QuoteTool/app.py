@@ -17,7 +17,7 @@ file = st.file_uploader("Drop your census file here to load", type={"csv"})
 try:
     inputs = pd.read_csv(file)
     st.text("Upload success!")
-    req = to_json(inputs, request_meta)
+    req = to_request(inputs, request_meta)
     st.text(req)
 
 except ValueError:

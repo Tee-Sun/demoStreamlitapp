@@ -8,7 +8,7 @@ import aiohttp
 from ref import *
 
 
-def to_json(inputs, request_meta):
+def to_request(inputs, request_meta):
     # Turn dataframe into JSON data structure
     data_js = inputs.to_json(orient='records')
     data_ls = eval(data_js)
