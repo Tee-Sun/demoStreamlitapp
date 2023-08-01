@@ -25,9 +25,10 @@ except ValueError:
 @st.cache(suppress_st_warning=True)
 def get_data(x, rm, url, headers): #(x, rm, url, headers, threads)
     req = to_json(x, rm)
-    print(req)
+    st.write(req)
     #store = threaded_process_range(req, url, headers, threads, range(threads))
     store = asyncio.run(async_batch_call(url, headers, req))
+    st.write(store)
     z = write_results(store)
     return z
 
